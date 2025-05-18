@@ -10,6 +10,13 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(
+  cors({
+    origin: 'https://leetcode-webapp-ki9k.vercel.app/',   // ← your Vercel domain here
+    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+    credentials: true,                       // if you need to send cookies/auth headers
+  })
+);
 app.use('/api/auth', authRoutes);
 
 mongoose.connect(
